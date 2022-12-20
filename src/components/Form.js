@@ -15,6 +15,7 @@ export default function Form(props) {
 
   //decrease counter
   const decreaseSections = (i) => {
+    console.log("Start");
     if (sections.length <= 0) {
       setSections([]);
     } else {
@@ -22,9 +23,11 @@ export default function Form(props) {
         if (i > -1) {
           console.log(i);
           prevSection.splice(i, 1);
-          console.log(prevSection.length);
+          console.log("section length: " + prevSection.length);
+          return [...prevSection];
         }
-        return [...prevSection];
+        console.log("End");
+        return prevSection;
       });
     }
   };
@@ -71,6 +74,7 @@ export default function Form(props) {
           // decreaseChords={decreaseChords}
           decreaseSections={decreaseSections}
           setSections={setSections}
+          sections={sections}
         />
       ))}
       <input type="submit" />

@@ -16,7 +16,9 @@ export default function Chord(props) {
       </select>
       <input {...register("chordExtension")} placeholder="Chord Extension" />
       <input {...register("additionalInfo")} placeholder="Additional Info" />
-      <div onClick={() => props.decreaseChords(props.index)}>x</div>
+      <div onClick={() => props.decreaseChords(props.section[props.index])}>
+        x
+      </div>
     </div>
   );
 }

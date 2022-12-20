@@ -4,8 +4,9 @@ import Chord from "./Chord";
 
 export default function Section(props) {
   const { register, handleSubmit, errors } = useForm();
-  const decreaseChords = (i) => {
-    if (i > -1) {
+  const decreaseChords = (i, section) => {
+    console.log("Index: " + i);
+    if (section[i].chords <= 0) {
       return;
     } else {
       props.setSections((prevSections) => {
@@ -23,13 +24,18 @@ export default function Section(props) {
 
   return (
     <div>
-      <div onClick={() => props.decreaseSections(props.index)}>- Remove</div>
+      <div onClick={() => props.decreaseSections(props.index)}>- Remove Section</div>
       <input {...register("sectionLetter")} placeholder="Section Letter" />
       <div onClick={() => props.increaseChords(props.index)}>+ Add Chord</div>
 
       {[...Array(props.chords)].map((_, i) => {
         return (
-          <Chord key={i} index={i} decreaseChords={decreaseChords} />
+          <Chord
+            key={i}
+            section={props.section}
+            index={i}
+            decreaseChords={decreaseChords}
+          />
         );
       })}
     </div>
